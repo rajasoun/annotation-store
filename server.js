@@ -156,7 +156,10 @@ mongoose.connect(db);
 var env = process.env.NODE_ENV || 'development';
 if (env === 'development') {
   	app.use(allowCrossDomain);
-	app.use(bodyParser());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }))
 	app.use(methodOverride());
 	app.use(lessMiddleware({
 		src: __dirname + '/public',
